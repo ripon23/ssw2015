@@ -1,30 +1,16 @@
 # A3M  
 ### 
 
-A3M (Account Authentication & Authorization) is a CodeIgniter 2.x package that leverages bleeding edge web technologies 
-like OpenID and OAuth to create a user-friendly user experience. It gives you the CRUD to get working right away 
-without too much fuss and tinkering! Designed for building webapps from scratch without all that tiresome 
-login / logout / admin stuff thats always required.
+SSW (Social Services ON Wheel) is an Global Communication Center project.
 
 ## Original Authors
 
-**Jakub** [@kubanishku](https://twitter.com/kubanishku/)  
-**PengKong** [@pengkong](https://github.com/pengkong)
+**Ripon** [@riponmailbox@gmail.com](http://aamra24.com)  
 		
 ## Key Features & Design Goals
 
 * Native Sign Up, Sign In with 'Remember me' and Sign Out  
-* Native account Forgot Password and Reset Password  
-* Facebook/Twitter/Google/Yahoo/OpenID Sign Up, Sign In and Sign Out  
-* Manage Account Details, Profile Details and Linked Accounts  
-* reCAPTCHA Support, SSL Support, Language Files Support  
-* Gravatar support for picture selection (via account profile) **(NEW)**
-* Create a painless user experience for sign up and sign in  
-* Create code that is easily understood and re-purposed  
-* Utilize Twitter Bootstrap (a fantastic CSS / JS library)  
-* Graceful degradation of JavaScript and CSS  
-* Proper usage of CodeIgniter's libraries, helpers and plugins  
-* Easily Configurable via config file  
+* SSW Urban and rural all 6 services
 
 ## Folder structure  
 
