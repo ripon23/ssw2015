@@ -1,0 +1,17 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2014-05-19 10:20:50 --> Could not find the language line "services_blood_group"
+ERROR - 2014-05-19 04:23:03 --> Could not find the language line "users_page_name"
+ERROR - 2014-05-19 04:23:59 --> Could not find the language line "users_page_name"
+ERROR - 2014-05-19 04:24:30 --> Could not find the language line "users_page_name"
+ERROR - 2014-05-19 04:25:00 --> Could not find the language line "users_page_name"
+ERROR - 2014-05-19 04:25:25 --> Could not find the language line "users_page_name"
+ERROR - 2014-05-19 10:26:11 --> Could not find the language line "services_blood_group"
+ERROR - 2014-05-19 10:31:40 --> Could not find the language line "services_blood_group"
+ERROR - 2014-05-19 10:31:50 --> Could not find the language line "services_blood_group"
+ERROR - 2014-05-19 10:32:02 --> Could not find the language line "services_blood_group"
+ERROR - 2014-05-19 10:33:05 --> Could not find the language line "services_blood_group"
+ERROR - 2014-05-19 10:33:08 --> Could not find the language line "services_blood_group"
+ERROR - 2014-05-19 10:38:12 --> Could not find the language line "services_blood_group"
+ERROR - 2014-05-19 10:38:14 --> Could not find the language line "services_blood_group"
+ERROR - 2014-05-19 11:30:09 --> Could not find the language line "services_blood_group"

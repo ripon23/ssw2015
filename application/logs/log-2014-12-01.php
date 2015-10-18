@@ -1,0 +1,136 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2014-12-01 11:25:46 --> Severity: Notice  --> Undefined variable: sum_booking_number C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 178
+ERROR - 2014-12-01 11:25:46 --> Severity: Notice  --> Undefined variable: sum_total_registration C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 179
+ERROR - 2014-12-01 11:25:46 --> Severity: Notice  --> Undefined variable: sum_grand_total C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 214
+ERROR - 2014-12-01 11:45:59 --> Severity: Notice  --> Undefined variable: sum_total_registration C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 133
+ERROR - 2014-12-01 12:54:24 --> Severity: Notice  --> Undefined variable: sum_date_range_total C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 156
+ERROR - 2014-12-01 12:57:43 --> Severity: Notice  --> Undefined variable: sum_date_range_total C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 156
+ERROR - 2014-12-01 12:59:29 --> Severity: Notice  --> Undefined offset: 1 C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:39 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 12:59:40 --> Severity: Warning  --> Cannot use a scalar value as an array C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 13:00:58 --> Severity: Notice  --> Undefined offset: 1 C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157
+ERROR - 2014-12-01 13:06:49 --> Severity: Notice  --> Undefined offset: 1 C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 156
+ERROR - 2014-12-01 13:06:49 --> Severity: Notice  --> Undefined offset: 1 C:\wamp\www\ssw2014\application\views\report\view_report_daily_revenue.php 157

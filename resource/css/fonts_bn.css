@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face
+{
+	font-family: SolaimanLipi;
+	src: url(../fonts/SolaimanLipi_04_07_05.ttf);
+	/*src: url(../fonts/SolaimanLipi_29-05-06.eot?#iefix) format('embedded-opentype'), /* IE6-IE8 */
+         /*url('../fonts/webfont.woff2') format('woff2'),  Super Modern Browsers */
+         /*url(../fonts/SolaimanLipi_29-05-06.woff) format('woff'), /* Pretty Modern Browsers */
+        /*// url(../fonts/SolaimanLipi_04_07_05.ttf)  format('truetype'), /* Safari, Android, iOS */
+         /*url(../fonts/SolaimanLipi_29-05-06.svg#svgFontName) format('svg'); /* Legacy iOS*/
+}
+body{
+	font-family: "SolaimanLipi",sans-serif;
+	//color: #5f5f5f;
+	//margin: 0;
+	//padding: 0;
+	font-size:17px;
+}
