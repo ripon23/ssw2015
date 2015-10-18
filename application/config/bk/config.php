@@ -373,7 +373,7 @@ $config['per_km_cost'] = 10;
 |--------------------------------------------------------------------------
 |
 */
-$config['cancel_before_time'] = 1440;
+$config['cancel_before_time'] = 1440; // 1440 min= 24 hr
 
 
 /*

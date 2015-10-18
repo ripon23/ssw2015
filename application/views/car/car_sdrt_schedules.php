@@ -114,6 +114,7 @@ $(window).on('load', function () {
                         <th>Route</th>
                         <th>Car</th>                        
                         <th>No. Of Set</th>
+                        <th>Per seat fare</th>
                         <th>Start Time</th>
                         <th>End Time</th>
                         <th>Start Node</th>
@@ -147,6 +148,11 @@ $(window).on('load', function () {
                         <td align="center">
                         <?php 
                             echo $car_results->no_of_set;
+                        ?>
+                        </td>
+                        <td align="center">
+                        <?php 
+                            echo $schedule->per_seat_fare." TK";
                         ?>
                         </td>
                         <td>

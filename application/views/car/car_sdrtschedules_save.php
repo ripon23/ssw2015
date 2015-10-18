@@ -188,6 +188,13 @@ $(function()
                         </td>
                     </tr>
                     <tr>
+                        <td align="right"><label for="status"><strong><?php echo  lang('car_fare')?> <span style="color:red;">*</span></strong></label></td>                
+                        <td>
+                        <input type="text" value="<?php echo set_value('per_seat_fare'); ?>" class="input-mini" id="per_seat_fare" name="per_seat_fare" placeholder="Fare"> TK
+                        </td>  
+                    </tr>
+                    
+                    <tr>
                         <td align="right"><label for="status"><strong><?php echo  lang('status')?> <span style="color:red;">*</span></strong></label></td>                
                         <td>
                         <select name="status" id="status" class="selectpicker span2" data-style="btn">

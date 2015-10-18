@@ -27,6 +27,7 @@ $lang['note'] = 'Note';
 $lang['success_add'] = 'Your Data Successfully Inserted';
 $lang['success_update'] = 'Your Data Successfully Updated';
 // Car info
+$lang['car_fare'] = 'Car fare';
 $lang['car_id'] = 'Car ID';
 $lang['car_model'] = 'Car Model';
 $lang['car_brand'] = 'Brand Name';

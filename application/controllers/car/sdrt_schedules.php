@@ -329,6 +329,7 @@ class Sdrt_schedules extends CI_Controller {
 			'arrival_time' => $this->input->post('etime', TRUE),
 			'start_node' => $this->input->post('start_node', TRUE),
 			'destination_node' => $this->input->post('drop_node', TRUE),
+			'per_seat_fare' => $this->input->post('per_seat_fare', TRUE),
 			'schedule_status' => $this->input->post('status', TRUE),
 			'create_user_id' => $this->session->userdata('account_id'),
 			'create_date' => mdate('%Y-%m-%d %H:%i:%s', now())

@@ -211,3 +211,30 @@ ERROR - 2015-10-18 16:52:39 --> Could not find the language line "services_car"
 ERROR - 2015-10-18 10:52:40 --> 404 Page Not Found --> resource
 ERROR - 2015-10-18 16:53:46 --> Could not find the language line "services_car"
 ERROR - 2015-10-18 10:53:46 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 12:04:04 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 12:04:08 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 18:07:37 --> Severity: Notice  --> Undefined property: stdClass::$per_seat_fare C:\wamp\www\ssw2015\application\views\car\car_sdrt_schedules.php 155
+ERROR - 2015-10-18 18:07:37 --> Severity: Notice  --> Undefined property: stdClass::$per_seat_fare C:\wamp\www\ssw2015\application\views\car\car_sdrt_schedules.php 155
+ERROR - 2015-10-18 18:07:37 --> Severity: Notice  --> Undefined property: stdClass::$per_seat_fare C:\wamp\www\ssw2015\application\views\car\car_sdrt_schedules.php 155
+ERROR - 2015-10-18 18:07:37 --> Severity: Notice  --> Undefined property: stdClass::$per_seat_fare C:\wamp\www\ssw2015\application\views\car\car_sdrt_schedules.php 155
+ERROR - 2015-10-18 18:07:37 --> Severity: Notice  --> Undefined property: stdClass::$per_seat_fare C:\wamp\www\ssw2015\application\views\car\car_sdrt_schedules.php 155
+ERROR - 2015-10-18 18:07:37 --> Severity: Notice  --> Undefined property: stdClass::$per_seat_fare C:\wamp\www\ssw2015\application\views\car\car_sdrt_schedules.php 155
+ERROR - 2015-10-18 18:07:37 --> Severity: Notice  --> Undefined property: stdClass::$per_seat_fare C:\wamp\www\ssw2015\application\views\car\car_sdrt_schedules.php 155
+ERROR - 2015-10-18 12:07:37 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 12:07:59 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 12:08:17 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 18:08:47 --> Could not find the language line "services_car"
+ERROR - 2015-10-18 12:08:48 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 18:10:29 --> Could not find the language line "fare"
+ERROR - 2015-10-18 18:10:29 --> Could not find the language line "services_car"
+ERROR - 2015-10-18 12:10:29 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 18:10:41 --> Could not find the language line "car_fare"
+ERROR - 2015-10-18 18:10:41 --> Could not find the language line "services_car"
+ERROR - 2015-10-18 12:10:42 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 18:11:01 --> Could not find the language line "services_car"
+ERROR - 2015-10-18 12:11:02 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 18:13:47 --> Could not find the language line "services_car"
+ERROR - 2015-10-18 12:13:48 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 18:14:07 --> Could not find the language line "services_car"
+ERROR - 2015-10-18 12:14:08 --> 404 Page Not Found --> resource
+ERROR - 2015-10-18 12:14:41 --> 404 Page Not Found --> resource
