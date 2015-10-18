@@ -61,7 +61,7 @@ class Booking_model extends CI_Model {
 	$resultSet = $this->db->query($sql1);
 	$car_no_of_set=$resultSet->row()->no_of_set;
 	
-	$sql2="SELECT count(*) as num_of_row FROM `car_schedule_booking` WHERE schedule_id=".$schedule_id;
+	$sql2="SELECT SUM(no_of_seat) as num_of_row FROM `car_schedule_booking` WHERE schedule_id=".$schedule_id;
 	$resultSet = $this->db->query($sql2);
 	$booked_seat=$resultSet->row()->num_of_row;  
 	

@@ -109,7 +109,13 @@ $lang['car_add'] = 'Car Add';
 $lang['assign_car'] = 'Assign Car on the Route';
 $lang['car_booking_info'] = "Car Booking Information";
 $lang['car_booking_last'] = "Latest Booking";
+
+$lang['car_ondemand_booking_list'] = "On Demand Booking List";
+$lang['car_schedule_booking_list'] = "Schedule Booking List";
+
 $lang['car_my_booking'] = 'My Booking';
+$lang['car_my_ondemand_booking'] = 'My On Demand Booking';
+$lang['car_my_schedule_booking'] = 'My Schedule Booking';
 $lang['car_my_menu'] = 'My Menu';
 $lang['car_book_a_seat'] = 'Book a seat';
 $lang['car_ondemand_booking'] = 'On Demand Booking';

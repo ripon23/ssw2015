@@ -7,7 +7,7 @@ class My_booking extends CI_Controller {
 		// Load the necessary stuff...
 		$this->load->helper(array('language', 'url', 'form', 'account/ssl','date'));
 		$this->load->library(array('account/authentication', 'account/authorization','form_validation'));
-		$this->load->model(array('car/general','account/account_model','car/booking_model'));	
+		$this->load->model(array('general_model', 'car/general','account/account_model','car/booking_model'));	
 		date_default_timezone_set('Asia/Dhaka');  // set the time zone UTC+6
 		
 		$language = $this->session->userdata('site_lang');
@@ -123,7 +123,96 @@ class My_booking extends CI_Controller {
 		
 		$this->load->view('car/my_booking', isset($data) ? $data : NULL);						
 	}
+	
+	
+	
+	function my_schedule_booking()
+	{
+		// Enable SSL?
+		maintain_ssl($this->config->item("ssl_enabled"));
+		// Redirect unauthenticated users to signin page
+		if ( ! $this->authentication->is_signed_in())
+		{
+		  redirect('account/sign_in/?continue='.urlencode(base_url().'car/my_booking'));
+		}
+		
+		// Redirect unauthorized users to account profile page
+		if ( ! $this->authorization->is_permitted('car_my_booking'))
+		{
+			$this->session->set_flashdata('parmission', 'You have no permission to access personal booking list');
+			//redirect(uri_string());
+		  	redirect(base_url().'dashboard');
+		}
+		
+		$data['account'] = $this->account_model->get_by_id($this->session->userdata('account_id'));
+		
+		$data['title'] = 'My Booking';	
 
+		$data['route_list'] = $this->general->get_list_view('car_route', $field_name=NULL, $id=NULL, $select=NULL, 'route_id', 'desc', NULL, NULL);
+		$data['car_list'] = $this->general->get_list_view('car_info', $field_name=NULL, $id=NULL, $select=NULL, 'car_id', 'desc', NULL, NULL);
+		$searchterm="SELECT car_schedule_booking.*,
+       car_sdrt_schedule.*,
+       car_sdrt_cost.*,
+       car_schedule_booking.user_id,
+       car_sdrt_schedule.schedule_date
+  FROM    (   car_schedule_booking car_schedule_booking
+           INNER JOIN
+              car_sdrt_cost car_sdrt_cost
+           ON (car_schedule_booking.sbooking_id = car_sdrt_cost.sbooking_id))
+       INNER JOIN
+         car_sdrt_schedule car_sdrt_schedule
+       ON (car_schedule_booking.schedule_id = car_sdrt_schedule.schedule_id)
+ WHERE (car_schedule_booking.user_id =".$data['account']->id.")
+ORDER BY car_sdrt_schedule.schedule_date DESC";
+		
+		
+		// Paginations
+		$this->load->library('pagination');
+		
+		//$count_members = count($all_members);
+		$config = array();
+		$config['base_url'] = base_url().'car/my_booking/my_schedule_booking/';
+		$config['total_rows'] = $this->general->number_of_total_rows_in_a_table_where('car_schedule_booking','user_id',$data['account']->id);
+		$config['num_links'] = 3;
+		$config['per_page'] = $this->config->item("pagination_perpage");
+		$config['uri_segment'] = 4;
+		
+		$config['full_tag_open'] = '<div class="pagination pagination-small"><ul>';
+		$config['full_tag_close'] = '</ul></div><!--pagination-->';
+		$config['display_pages'] = TRUE;
+		$config['first_link'] = '&laquo; First';
+		$config['first_tag_open'] = '<li class="prev page">';
+		$config['first_tag_close'] = '</li>';
+		
+		$config['last_link'] = 'Last &raquo;';
+		$config['last_tag_open'] = '<li class="next page">';
+		$config['last_tag_close'] = '</li>';
+		
+		$config['next_link'] = 'Next &rarr;';
+		$config['next_tag_open'] = '<li class="next page">';
+		$config['next_tag_close'] = '</li>';
+		
+		$config['prev_link'] = '&larr; Prev';
+		$config['prev_tag_open'] = '<li class="prev page">';
+		$config['prev_tag_close'] = '</li>';
+		
+		$config['cur_tag_open'] = '<li class="active"><a>';
+		$config['cur_tag_close'] = '</a></li>';
+		
+		$config['num_tag_open'] = '<li class="page">';
+		$config['num_tag_close'] = '</li>';
+		
+		$this->pagination->initialize($config);		
+		
+		$page = ($this->uri->segment(4))? $this->uri->segment(4) : 0;		
+		$data['latest_booking'] = $this->general_model->get_all_result_by_limit_querystring($searchterm,$config["per_page"], $page);					
+		$data["links"] = $this->pagination->create_links();
+		$data["page"]=$page;					
+		
+		$this->load->view('car/my_schedule_booking', isset($data) ? $data : NULL);	
+	}
+	
+	
 	function search()
 	{
 		// Enable SSL?
@@ -447,6 +536,7 @@ class My_booking extends CI_Controller {
 			redirect(base_url().'car/schedules');
 		}
   }
+	
 	function booking_cancelled($booking_id)
 	 {
 	  // Enable SSL?
@@ -475,8 +565,41 @@ class My_booking extends CI_Controller {
 	  redirect('car/my_booking/');
 	 }
 	
+	
+	function schedule_booking_cancelled($booking_id)
+	 {
+	  // Enable SSL?
+	  maintain_ssl($this->config->item("ssl_enabled"));
+	  // Redirect unauthenticated users to signin page
+	  if ( ! $this->authentication->is_signed_in())
+	  {
+		redirect('account/sign_in/?continue='.urlencode(base_url().'car/latest_booking'));
+	  }
+	  
+	  // Redirect unauthorized users to account profile page
+	  if ( ! $this->authorization->is_permitted('car_my_booking'))
+	  {
+	   $this->session->set_flashdata('parmission', 'You have no permission to access manage booking');
+	   redirect(base_url().'dashboard');
+	  }
+	
+	  if (!$this->check_my_schedule_booking($booking_id, $this->session->userdata('account_id'))) {
+	   $this->session->set_flashdata('message_error', 'You can not modify another user booking');
+	   redirect(base_url().'car/my_booking/my_schedule_booking');
+	  }
+	
+	  $table_data = array('booking_status'=>2);
+	  $this->general->update_table('car_schedule_booking', $table_data,'sbooking_id', $booking_id);
+	  $this->session->set_flashdata('message_success', lang('success_update'));
+	  redirect('car/my_booking/my_schedule_booking');
+	 }
+	 
 	 function check_my_booking($booking_id, $user_id){
 	  return ($this->booking_model->get_node_route('car_booking', $select = NULL, array('booking_id'=>$booking_id, 'user_id'=>$user_id))) ? TRUE: FALSE ;
+	 }
+	 
+	 function check_my_schedule_booking($booking_id, $user_id){
+	  return ($this->booking_model->get_node_route('car_schedule_booking', $select = NULL, array('sbooking_id'=>$booking_id, 'user_id'=>$user_id))) ? TRUE: FALSE ;
 	 }
 	 
 	 

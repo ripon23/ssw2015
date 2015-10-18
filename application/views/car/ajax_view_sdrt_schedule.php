@@ -26,11 +26,12 @@
     <td><?=$schedule->per_seat_fare ?> TK</td>
     <td style="background-color:#FFE1D2">
     <!--   Another table  -->
-    	<table border="0" style="border:none;">
+    	<div id="sdrt_booking_form_<?=$schedule->schedule_id?>">
+        <table border="0" style="border:none;">
         	<tr>
           		<td style="background-color:#FFE1D2;border:none;">From</td>
           		<td style="background-color:#FFE1D2;border:none;">
-                <select id="pickup_point_id" name="pickup_point_id" class="input-medium" style="font-size:10px">
+                <select id="pickup_point_id_<?=$schedule->schedule_id?>" name="pickup_point_id_<?=$schedule->schedule_id?>" class="input-medium" style="font-size:10px">
                     <option value="">Select Pickup Point </option>
                     <?php foreach ($all_pickup_point as $key => $pickup_point) {?>
                     <option <?php echo set_select('pickup_point_id')==$pickup_point->pickup_point_id? "selected":""; ?> value="<?php echo $pickup_point->pickup_point_id; ?>"><?php echo $pickup_point->pickup_point_en; ?></option>
@@ -39,13 +40,13 @@
                 </select>
                 </td>
           		<td rowspan="3" style="background-color:#FFE1D2;border:none;">
-                <button class="btn btn-mini btn-warning" type="button">Book my seat</button>
+                <button name="booked_<?=$schedule->schedule_id?>" id="booked_<?=$schedule->schedule_id?>" onClick="book_my_seat(this.id)" class="btn btn-mini btn-warning" type="button">Book my seat</button>
                 </td>
         	</tr>
         	<tr>
           		<td style="background-color:#FFE1D2;border:none;">To</td>
           		<td style="background-color:#FFE1D2;border:none;">
-                <select id="drop_point_id" name="drop_point_id" class="input-medium" style="font-size:10px">
+                <select id="drop_point_id_<?=$schedule->schedule_id?>" name="drop_point_id_<?=$schedule->schedule_id?>" class="input-medium" style="font-size:10px">
                     <option value="">Select Drop Point </option>
                     <?php foreach ($all_pickup_point as $key => $pickup_point) {?>
                     <option <?php echo set_select('drop_point_id')==$pickup_point->pickup_point_id? "selected":""; ?> value="<?php echo $pickup_point->pickup_point_id; ?>"><?php echo $pickup_point->pickup_point_en; ?></option>
@@ -57,7 +58,7 @@
         	<tr>
           		<td style="background-color:#FFE1D2;border:none;">Number of Seat</td>
           		<td style="background-color:#FFE1D2;border:none;">
-                <select id="drop_point_id" name="drop_point_id" class="input-mini" style="font-size:10px">        
+                <select id="no_of_seat_<?=$schedule->schedule_id?>" name="no_of_seat_<?=$schedule->schedule_id?>" class="input-mini" style="font-size:10px">        
 					<?php
                     for($i=1;$i<=$available_seat;$i++)
                     {
@@ -71,6 +72,7 @@
                 </td>
         	</tr>
       	</table>
+        </div> <!-- sdrt_booking_form END  -->
     <!--  End Another table  -->       
        
     </td>

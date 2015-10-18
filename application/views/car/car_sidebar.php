@@ -12,9 +12,14 @@
         <?php endif;?>                        
          <?php if ($this->authorization->is_permitted('car_manage')) : ?> 
         <p><a href="<?=base_url();?>car/add_car"><?=lang('car_list')?></a></p>
-        <?php endif;?>                         
+        <?php endif;?>                                                 
+        
         <?php if ($this->authorization->is_permitted('car_schedule_manage')) : ?> 
-        <p><a href="<?=base_url();?>car/schedules"><?=lang('car_urban_schedule_management')?></a></p>
+        <p><a href="<?=base_url();?>car/schedules">On demand <?=lang('car_urban_schedule_management')?></a></p>
+        <?php endif;?>
+        
+        <?php if ($this->authorization->is_permitted('car_schedule_manage')) : ?> 
+        <p><a href="<?=base_url();?>car/sdrt_schedules">sDRT <?=lang('car_urban_schedule_management')?></a></p>
         <?php endif;?>
     </div>
 </div>

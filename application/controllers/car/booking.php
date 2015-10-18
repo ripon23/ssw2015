@@ -760,7 +760,74 @@ class Booking extends CI_Controller {
 		
 	}
 
-
+	function sdrt_booking_save()	
+	{
+		// Enable SSL?
+		maintain_ssl($this->config->item("ssl_enabled"));
+		// Redirect unauthenticated users to signin page
+		if ( ! $this->authentication->is_signed_in())
+		{
+		  redirect('account/sign_in/?continue='.urlencode(base_url().'car/booking'));
+		}
+		
+		// Redirect unauthorized users to account profile page
+		if ( ! $this->authorization->is_permitted('car_booking'))
+		{
+			$this->session->set_flashdata('parmission', 'You have no permission to access car_booking');
+		  	redirect(base_url().'dashboard');
+		}
+		
+		$data['account'] = $this->account_model->get_by_id($this->session->userdata('account_id'));	
+		
+		$pickup_point_id=$this->input->post('pickup_point_id', TRUE);
+		$drop_point_id=$this->input->post('drop_point_id', TRUE);
+		$num_of_seat=$this->input->post('no_of_seat', TRUE);
+		$schedule_id=$this->input->post('schedule_id', TRUE);
+				
+			$data = array(
+					'user_id' => $data['account']->id,
+					'schedule_id' => $schedule_id, 
+					'pickup_point' => $pickup_point_id,					
+					'destination_point' => $drop_point_id,					
+					'no_of_seat' => $num_of_seat,
+					'create_user_id' => $data['account']->username,
+					'create_date' => mdate('%Y-%m-%d %H:%i:%s', now()),
+					'booking_status' => 3					
+				);
+			
+			$sbooking_id = $this->general->save_into_table_and_return_insert_id('car_schedule_booking', $data);
+			
+			if($sbooking_id)
+			{
+				$sdrt_schedule_info=$this->general->get_all_table_info_by_id('car_sdrt_schedule', 'schedule_id', $schedule_id);
+				$fare_cost=$num_of_seat*$sdrt_schedule_info->per_seat_fare;
+				
+				$cost_array=array(
+					'sbooking_id' => $sbooking_id,
+					'fare_cost' => $fare_cost,
+					'modification_time' =>mdate('%Y-%m-%d %H:%i:%s', now()),
+					'status'=> 1
+				);
+	
+				$this->general->save_into_table('car_sdrt_cost', $cost_array);
+				
+				
+				$reference_id="SSW".$sbooking_id;
+				$table_data=array(
+					'reference_id' => $reference_id
+				);
+				$this->general->update_table('car_schedule_booking', $table_data,'sbooking_id', $sbooking_id);
+				echo "<span class='label label-success'>Successfully create your booking. You booking reference id is <strong>".$reference_id."</strong></span>";
+			}
+			else
+			{
+			echo "<span class='label label-success'>Error! please try again later</span>";	
+			}
+			
+		
+	}
+	
+	
   function save($id=null)
   {
     // Keep track if this is a new user

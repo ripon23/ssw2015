@@ -92,9 +92,10 @@
                       </div>
                       <div class="panel-body">
                         <?php if ($this->authorization->is_permitted('car_booking_management')) : ?> 
-                        <p><a href="<?=base_url();?>car/latest_booking"><?=lang('car_booking_last')?></a> 
-                        	<!--<span class="badge badge-warning"> 11</span>-->
-                        </p>
+                        <p><a href="<?=base_url();?>car/latest_booking"><?=lang('car_ondemand_booking_list')?></a> 
+                        	<!--<span class="badge badge-warning"> 11</span>--></p>
+                        
+                        <p><a href="<?=base_url();?>car/latest_booking/latest_schedule_booking"><?=lang('car_schedule_booking_list')?></a></p>
                         <?php endif;?>
                         
                         <?php if ($this->authorization->is_permitted('car_booking')) : ?> 
@@ -106,8 +107,12 @@
                         <?php endif;?>
                         
 						<?php if ($this->authorization->is_permitted('car_my_booking')) : ?> 
-                        <p><a href="<?=base_url();?>car/my_booking"><?=lang('car_my_booking')?></a></p>
-                        <?php endif;?>                        
+                        <p><a href="<?=base_url();?>car/my_booking"><?=lang('car_my_ondemand_booking')?></a></p>
+                        <?php endif;?> 
+                        
+                        <?php if ($this->authorization->is_permitted('car_my_booking')) : ?> 
+                        <p><a href="<?=base_url();?>car/my_booking/my_schedule_booking"><?=lang('car_my_schedule_booking')?></a></p>
+                        <?php endif;?>                         
                         
                       </div>
                     </div>

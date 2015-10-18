@@ -6,7 +6,51 @@
 <script type="text/javascript" src="<?php echo base_url().RES_DIR; ?>/bootstrap/js/bootstrap-datepicker.min.js"></script>
 <link type="text/css" rel="stylesheet" href="<?php echo base_url().RES_DIR; ?>/bootstrap/css/bootstrap-datepicker.min.css"/>
     
- <script type="text/javascript">
+<script type="text/javascript">
+function book_my_seat(button_id)
+{
+var schedule_id = button_id.replace('booked_','');	
+//alert(schedule_id);
+var pickup_point_id = $('#pickup_point_id_'+schedule_id).val();
+var drop_point_id = $('#drop_point_id_'+schedule_id).val();
+var no_of_seat = $('#no_of_seat_'+schedule_id).val();
+
+if(!pickup_point_id)
+{
+alert("Please select pickup point");	
+return;
+}
+
+if(!drop_point_id)
+{
+alert("Please select drop point");	
+return;
+}
+
+var postData = { //Fetch form data
+            'pickup_point_id'     : pickup_point_id, 
+			'drop_point_id'     : drop_point_id,
+			'schedule_id'     : schedule_id,
+			'no_of_seat'     : no_of_seat
+        };
+
+$.ajax({
+           type: "POST",
+           url: "car/booking/sdrt_booking_save",
+		   data: postData,
+		   beforeSend: function() {
+    		$('#sdrt_booking_form_'+schedule_id).html("<img src='<?php echo base_url().RES_DIR; ?>/img/ajax-loader.gif' />");
+  			},
+           success: function(response)
+           {               			  			
+			$("#sdrt_booking_form_"+schedule_id).html(response);			      	
+           }
+         });
+
+//alert("Pickup Point="+pickup_point_id+", Drop Point="+drop_point_id+", Seat="+no_of_seat);
+}
+
+
 function load_sdrt_schedule()
 {
 

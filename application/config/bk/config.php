@@ -246,6 +246,17 @@ $config['cache_path'] = '';
 */
 $config['encryption_key'] = '7Q1Vasdeo8k6T51rQn9w5DQrcGG06VMF';
 
+
+/*
+|--------------------------------------------------------------------------
+| API Key for Android Aps
+|--------------------------------------------------------------------------
+|
+| If you use the Encryption class or the Session class you
+| MUST set an encryption key.  See the user guide for info.
+|
+*/
+$config['api_key'] = '7Q1Vasdeo8k6T51kkkrQn9w5DQrcGG06VMF';
 /*
 |--------------------------------------------------------------------------
 | Session Variables
