@@ -101,6 +101,9 @@ class Sdrt_schedules extends CI_Controller {
 	}
 	
 	
+	
+	
+	
 	public function ajax_get_sdrt_schedule()
 	{
 		// Enable SSL?
@@ -251,7 +254,105 @@ class Sdrt_schedules extends CI_Controller {
 	
 	}
 
-
+	
+	
+	public function edit_sdrt_schedule($schedule_id)
+	{
+		// Redirect unauthenticated users to signin page
+		if ( ! $this->authentication->is_signed_in())
+		{
+		  redirect('account/sign_in/?continue='.urlencode(base_url().'car/schedules'));
+		}
+	
+		// Check if they are allowed to Update Users
+		if ( ! $this->authorization->is_permitted('car_schedule_manage'))
+		{
+			$this->session->set_flashdata('parmission', 'You have no permission to update Schedule');
+			redirect(base_url().'dashboard');
+		}
+	
+		// Check if they are allowed to Create Users
+		if ( ! $this->authorization->is_permitted('car_schedule_add') )
+		{
+		  $this->session->set_flashdata('parmission', 'You have no permission to add Schedule');
+		  redirect(base_url().'dashboard');
+		}
+	
+		// Retrieve sign in user
+		$data['account'] = $this->account_model->get_by_id($this->session->userdata('account_id'));
+	
+		$data['action'] = 'Edit schedule';
+	
+	
+		$this->form_validation->set_error_delimiters('<div class="field_error">', '</div>');
+		$this->form_validation->set_rules(
+		  array(
+			array(
+			  'field' => 'car_id', 
+			  'label' => 'Car', 
+			  'rules' => 'trim|required'),
+			array(
+			  'field' => 'route_id', 
+			  'label' => 'Route', 
+			  'rules' => 'trim|required'),
+			array(
+			  'field' => 'start_node', 
+			  'label' => 'Start node', 
+			  'rules' => 'trim|required'),
+			array(
+			  'field' => 'drop_node', 
+			  'label' => 'Drop node', 
+			  'rules' => 'trim|required'),
+			array(
+			  'field' => 'sdate', 
+			  'label' => 'Start Date', 
+			  'rules' => 'trim|required'),
+			array(
+			  'field' => 'stime', 
+			  'label' => 'Strat Time', 
+			  'rules' => 'trim|required'), 
+			array(
+			  'field' => 'etime', 
+			  'label' => 'End Time', 
+			  'rules' => 'trim|required'), 
+			array(
+			  'field' => 'status', 
+			  'label' => 'lang:status', 
+			  'rules' => 'trim|required')
+		  ));
+		// Run form validation
+		if ($this->form_validation->run())
+		{
+			$data = array(					
+				'route_id' => $this->input->post('route_id', TRUE),
+				'car_id' => $this->input->post('car_id', TRUE),
+				'schedule_date' => $this->input->post('sdate', TRUE),
+				'start_time' => $this->input->post('stime', TRUE),
+				'arrival_time' => $this->input->post('etime', TRUE),
+				'start_node' => $this->input->post('start_node', TRUE),
+				'destination_node' => $this->input->post('drop_node', TRUE),
+				'per_seat_fare' => $this->input->post('per_seat_fare', TRUE),
+				'schedule_status' => $this->input->post('status', TRUE),
+				'create_user_id' => $this->session->userdata('account_id'),
+				'create_date' => mdate('%Y-%m-%d %H:%i:%s', now())
+			);
+				
+			$this->general->update_table('car_sdrt_schedule', $data,'schedule_id', $schedule_id);
+			
+			
+			$this->session->set_flashdata('message_success', lang('success_update'));			
+			redirect('car/sdrt_schedules');			
+       
+	}
+	
+	$data['schedule_info'] = $this->general->get_all_table_info_by_id('car_sdrt_schedule', 'schedule_id', $schedule_id);
+	$data['all_node'] =  $this->general->get_all_table_info_by_id_asc_desc('car_node', 'route_id', $data['schedule_info']->route_id, 'node_name_en', 'asc');
+	$data['all_routes'] = $this->general->get_list_view('car_route', 'enable', 1, $select=NULL, 'route_id', 'desc', NULL, NULL);
+	$data['all_car'] = $this->general->get_list_view('car_info', $field_name=NULL, $id=NULL, $select=NULL, 'car_id', 'desc', NULL, NULL);	
+    $this->load->view('car/car_sdrtschedules_edit', $data);			
+	}
+	
+	
 
   function add_sdrtschedule()
   {

@@ -1153,7 +1153,7 @@ class Booking extends CI_Controller {
 		$where_field_value=$this->input->post('route_id');
 		
 		//echo "hi----";
-		echo "table_name=".$table_name.",field_name=".$where_field.",where_field_value=".$where_field_value;
+		//echo "table_name=".$table_name.",field_name=".$where_field.",where_field_value=".$where_field_value;
 		
 		$select = "node_id, node_name_en";
 		$nodes = $this->general->get_list_view($table_name, $where_field, $where_field_value, $select, NULL, NULL, NULL, NULL);
