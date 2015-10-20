@@ -81,13 +81,11 @@ class Sign_in extends CI_Controller {
 					
 					$response["success"] = 0;
 					$response["message"] = lang('sign_in_combination_incorrect');
-					echo json_encode($response);
-					
+					echo json_encode($response);					
 				}
 				else
 				{
-					$myarray=$this->acl_role_model->get_by_account_id($user->id);
-					$response['account_role'] = $myarray[0]->id;
+					$response['account_role'] = $this->acl_role_model->get_by_account_id($user->id)[0]->id;
 					if ($response['account_role'] == 5) 
 					{
 						$response['account'] = $this->account_model->get_by_id($user->id);

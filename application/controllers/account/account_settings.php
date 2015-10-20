@@ -49,25 +49,17 @@ class Account_settings extends CI_Controller {
 
 		// Retrieve sign in user
 		$data['account'] = $this->account_model->get_by_id($this->session->userdata('account_id'));
-		$data['account_details'] = $this->account_details_model->get_by_account_id($this->session->userdata('account_id'));
-
+		
 		// Retrieve countries, languages and timezones
 		$data['countries'] = $this->ref_country_model->get_all();
 		$data['languages'] = $this->ref_language_model->get_all();
 		$data['zoneinfos'] = $this->ref_zoneinfo_model->get_all();
 
-		// Split date of birth into month, day and year
-		if ($data['account_details'] && $data['account_details']->dateofbirth)
-		{
-			$dateofbirth = strtotime($data['account_details']->dateofbirth);
-			$data['account_details']->dob_month = mdate('%m', $dateofbirth);
-			$data['account_details']->dob_day = mdate('%d', $dateofbirth);
-			$data['account_details']->dob_year = mdate('%Y', $dateofbirth);
-		}
+		
 
 		// Setup form validation
 		$this->form_validation->set_error_delimiters('<div class="field_error">', '</div>');
-		$this->form_validation->set_rules(array(array('field' => 'settings_email', 'label' => 'lang:settings_email', 'rules' => 'trim|required|valid_email|max_length[160]'), array('field' => 'settings_fullname', 'label' => 'lang:settings_fullname', 'rules' => 'trim|max_length[160]'), array('field' => 'settings_firstname', 'label' => 'lang:settings_firstname', 'rules' => 'trim|max_length[80]'), array('field' => 'settings_lastname', 'label' => 'lang:settings_lastname', 'rules' => 'trim|max_length[80]'), array('field' => 'settings_postalcode', 'label' => 'lang:settings_postalcode', 'rules' => 'trim|max_length[40]')));
+		$this->form_validation->set_rules(array(array('field' => 'settings_email', 'label' => 'lang:settings_email', 'rules' => 'trim|required|valid_email|max_length[160]'), array('field' => 'mobile', 'label' => 'Mobile', 'rules' => 'trim|max_length[11]|min_length[11]'), array('field' => 'settings_fullname', 'label' => 'lang:settings_fullname', 'rules' => 'trim|max_length[160]'), array('field' => 'settings_firstname', 'label' => 'lang:settings_firstname', 'rules' => 'trim|max_length[80]'), array('field' => 'settings_lastname', 'label' => 'lang:settings_lastname', 'rules' => 'trim|max_length[80]'), array('field' => 'settings_postalcode', 'label' => 'lang:settings_postalcode', 'rules' => 'trim|max_length[40]')));
 
 		// Run form validation
 		if ($this->form_validation->run())
@@ -87,14 +79,29 @@ class Account_settings extends CI_Controller {
 				// Update account email
 				$this->account_model->update_email($data['account']->id, $this->input->post('settings_email', TRUE) ? $this->input->post('settings_email', TRUE) : NULL);
 
+				// Update account phone
+				$this->account_model->update_phone($data['account']->id, $this->input->post('mobile', TRUE) ? $this->input->post('mobile', TRUE) : NULL);
+
 				// Update account details
 				if ($this->input->post('settings_dob_month', TRUE) && 
 					$this->input->post('settings_dob_day', TRUE) && 
 					$this->input->post('settings_dob_year', TRUE)) $attributes['dateofbirth'] = mdate('%Y-%m-%d', strtotime($this->input->post('settings_dob_day', TRUE).'-'.$this->input->post('settings_dob_month', TRUE).'-'.$this->input->post('settings_dob_year', TRUE)));
-					
-				$attributes['fullname'] = $this->input->post('settings_fullname', TRUE) ? $this->input->post('settings_fullname', TRUE) : NULL;
+				
+				$lastname = NULL;
+		        $lastname_array = $this->input->post('settings_lastname', TRUE);
+		        $lastname_array = explode(" ",$lastname_array);
+		        
+		        if (count($lastname_array)>0) {
+		          for ($i=0; $i < count($lastname_array); $i++) { 
+		            $lastname .= $lastname_array[$i]." ";
+		          }         
+		        }
+
+		        $fullname = ($this->input->post('settings_firstname', TRUE)." ".$lastname)? $this->input->post('settings_firstname', TRUE)." ".$lastname:NULL;
+
+				$attributes['fullname'] = $fullname;
 				$attributes['firstname'] = $this->input->post('settings_firstname', TRUE) ? $this->input->post('settings_firstname', TRUE) : NULL;
-				$attributes['lastname'] = $this->input->post('settings_lastname', TRUE) ? $this->input->post('settings_lastname', TRUE) : NULL;
+				$attributes['lastname'] = $lastname;
 				$attributes['gender'] = $this->input->post('settings_gender', TRUE) ? $this->input->post('settings_gender', TRUE) : NULL;
 				$attributes['postalcode'] = $this->input->post('settings_postalcode', TRUE) ? $this->input->post('settings_postalcode', TRUE) : NULL;
 				$attributes['country'] = $this->input->post('settings_country', TRUE) ? $this->input->post('settings_country', TRUE) : NULL;
@@ -104,6 +111,16 @@ class Account_settings extends CI_Controller {
 
 				$data['settings_info'] = lang('settings_details_updated');
 			}
+		}
+		$data['account_details'] = $this->account_details_model->get_by_account_id($this->session->userdata('account_id'));
+
+		// Split date of birth into month, day and year
+		if ($data['account_details'] && $data['account_details']->dateofbirth)
+		{
+			$dateofbirth = strtotime($data['account_details']->dateofbirth);
+			$data['account_details']->dob_month = mdate('%m', $dateofbirth);
+			$data['account_details']->dob_day = mdate('%d', $dateofbirth);
+			$data['account_details']->dob_year = mdate('%Y', $dateofbirth);
 		}
 
 		$this->load->view('account/account_settings', $data);

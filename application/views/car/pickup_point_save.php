@@ -2,7 +2,38 @@
 <html>
 <head>
 <?php echo $this->load->view('head'); ?>
+<script type="text/javascript">
+    $(function(){
+        $("#route_id").change(function()
+        {
+            var route_id=$(this).val();
+            var field_name = 'route_id';
+            var table_name = 'car_node';
+            //var base_url = $('#base_url').val();
+
+            // get_chile($table_name, $where_field, $where_field_value, $select)
+            var url = "car/booking/get_chile/"+table_name+"/"+field_name+"/"+route_id;
+            // var url = "car/booking/test";
+            $.ajax
+            ({
+                type: "GET",
+                url: url,
+                beforeSend : function (){
+                    //$(".dis_load").html('<img src="'+base_url+'images/ajax/ajax-1.gif">');
+                    $("#node_list").html('<option value ="">Loading...</option>');
+                },
+                //data: dataString,
+                cache: false,               
+                success: function(response)
+                {
+                    $("#node_list").html(response);
+                }
+            });
+        })
+    })
+</script>
 <script>
+
 $(window).on('load', function () {
 
 	$('.selectpicker').selectpicker({
@@ -49,25 +80,28 @@ $(window).on('load', function () {
                     </td>
                 </tr>
                 <tr>
-                    <th align="right"><label for="pickup_point_bn"><strong>Select Node</strong></label></th>
-                    <?php
-                      $selected_node = isset( $_POST['node_id'] ) ? $_POST['node_id'] : '' ;
-                    ?>                    
+                    <td align="right"><label for="route_id"><strong>Select Route</strong></label></td>
                     <td>
-                    <select name="node_id" id="sservices_status" class="selectpicker span2" data-style="btn">
-                        <option value="">Select Node</option>
-                        <?php foreach ($all_car_node as $car_node) {
+                        <select name="route_id" id="route_id" class="selectpicker span2" data-style="btn">
+                            <option value="">Select Route</option>
+                            <?php foreach ($all_routes as $routes) {?>
+                            <option <?php echo (isset($update_details->route_id) && $update_details->route_id == $routes->route_id) ? 'selected' :''; ?> value="<?php echo $routes->route_id?>"><?php echo $routes->route_name_en?></option>
+                                
+                            <?php
+                            }
                             ?>
-                            <option value="<?php echo $car_node->node_id ?>" <?php echo (isset($update_details->node_id) && $update_details->node_id == $car_node->node_id? 'selected' : '')?>><?php echo $car_node->node_name_en?></option>
-
-                            <?php 
-                        }?>
-                    </select>
-                    <span class="help-inline" style="color:#EF030A">
-                        <?php echo form_error('node_id')?>
-                    </span>
+                        </select>
                     </td>
                 </tr>
+                <tr>
+                    <td align="right"><label for="node_list"><strong>Select Node</strong></label></td>
+                    <td>
+                        <select name="node_id" id="node_list" class="span2">
+                            <option value="">Select Node</option>                            
+                        </select>
+                    </td>
+                </tr>
+                
                 <tr>
                     <div class="control-group">
                     <td align="right" width="180"><label for="distance_to_node"><strong>Distance to Node</strong></label></td>

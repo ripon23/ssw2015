@@ -1,5 +1,5 @@
 <?php
-class Booking extends CI_Controller {
+class Trip_summary extends CI_Controller {
 
 	function __construct()
 	{
@@ -37,194 +37,15 @@ class Booking extends CI_Controller {
 		    $this->form_validation->set_rules(
 		      array(
 			  	array(
-		          'field' => 'route_id',
-		          'label' => 'Route Name',
-		          'rules' => 'trim|required'), 
-		        array(
-		          'field' => 'node_id',
-		          'label' => 'Node Name',
-		          'rules' => 'trim|required'),
-		        array(
-		          'field' => 'pick_up', 
-		          'label' => 'Pickup Point', 
-		          'rules' => 'trim|required'), 
-		        array(
-		          'field' => 'booking_date', 
-		          'label' => 'Booking Date', 
-		          'rules' => 'trim|required|xss_clean'),
-				array(
-		          'field' => 'int_araival_itme', 
-		          'label' => 'Intended Arrival Time', 
-		          'rules' => 'trim|required|xss_clean'),
-				array(
-		          'field' => 'drop_node', 
-		          'label' => 'Drop Node', 
-		          'rules' => 'trim|required'),		  
-				array(
-		          'field' => 'drop_point', 
-		          'label' => 'Drop Point', 
-		          'rules' => 'trim|required'),
-				array(
-		          'field' => 'no_of_set', 
-		          'label' => 'No. Of Set',
-		          'rules' => 'trim|required|min_length[1]|xss_clean')
+		          'field' => 'user_id',
+		          'label' => 'User ID',
+		          'rules' => 'trim|required')		        
 		      ));
 			// Run form validation
 		    if ($this->form_validation->run())
 		    {
-				$pickup_node = base64_decode($this->input->post('node_id', TRUE));
-				$pickup_point = base64_decode($this->input->post('pick_up', TRUE));
-				// Drop node information
-				$drop_node = base64_decode($this->input->post('drop_node', TRUE));
-				$drop_point = base64_decode($this->input->post('drop_point', TRUE));
-				$route_id = base64_decode($this->input->post('route_id', TRUE));
-				$booking_date = base64_decode($this->input->post('booking_date', TRUE));
-				$accepted_time_delay = base64_decode($this->input->post('time_delay', TRUE));
-				$arrival_time = base64_decode($this->input->post('int_araival_itme', TRUE));
-				$no_of_set = base64_decode($this->input->post('no_of_set', TRUE));
-				
-				$time_duration = 0;
-				$kilomiter = 0;
-				do {
-					$sche_select = 'node_id, previous_node, distance_previous, time_previous';
-				    $previous_nodes_details = $this->general->get_all_table_info_by_id_custom('car_node',$sche_select, 'node_id', $drop_node);
-				    $des_previous_node = $previous_nodes_details->previous_node;
-				    $drop_node = $des_previous_node;
-			    	$time_duration += $previous_nodes_details->time_previous;
-			    	$kilomiter += $previous_nodes_details->distance_previous;
-
-				} while ($des_previous_node != $pickup_node);
-
-				$sche_select = 'distance_to_node, time_to_node';
-						
-				$pickup_point_details = $this->general->get_all_table_info_by_id_custom('car_pickup_point',$sche_select, 'pickup_point_id', $pickup_point);
-
-				$drop_point_details = $this->general->get_all_table_info_by_id_custom('car_pickup_point',$sche_select, 'pickup_point_id', $drop_point);
-
-				// Total Kilomiter
-				$total_kilomiter = $kilomiter+$drop_point_details->distance_to_node+$pickup_point_details->distance_to_node;
-				
-				$accepted_time_delay = $this->input->post('time_delay', TRUE);
-				$advance_time_with_delay = date('H:i:s', strtotime($arrival_time)+(60*$accepted_time_delay));
-				$late_time_with_delay = date('H:i:s', strtotime($arrival_time)-(60*$accepted_time_delay));
-
-				$int_arrival_time = date('H:i:s', strtotime($arrival_time));
-				$estimated_pickup_time = date('H:i:s', strtotime($int_arrival_time)-((60*$time_duration)+(60*$pickup_point_details->time_to_node)+(60*$drop_point_details->time_to_node)));
-						
-				if ($this->booking_model->get_schedule($booking_date, $estimated_pickup_time, $int_arrival_time)) 
-				{
-					$query="Select * from car_booking where date_of_booking='".$booking_date."'AND status=3 AND route_id=".$route_id;
-					$nth_customer= $this->general->total_count_query_string($query);
-					//echo "===".$nth_customer;
-					if($nth_customer>0)
-					{		
-						// Calculate the each node arrival time depending on the pickup time of 1st passenger
-						$first_passenger_pickup_time_query="Select * from car_booking where date_of_booking='".$booking_date."' AND route_id=".$route_id." Order By booking_id  LIMIT 1";
-						$first_passenger_pickup_time_array=$this->general->get_all_single_row_querystring($first_passenger_pickup_time_query);
-										
-						$first_passenger_pickup_time=$first_passenger_pickup_time_array->pickup_time; 	// first passenger pick-up time
-						$first_passenger_pickup_node=$first_passenger_pickup_time_array->start_node; 	// first passenger start_node
-						$first_passenger_pickup_point=$first_passenger_pickup_time_array->start_pickup_point; 	// first passenger pick-up point
-						
-						//calculate 1st paggenger pickup point to node time distance
-						$pickup_point_to_node_time_distance_query="Select * from car_pickup_point WHERE pickup_point_id=".$first_passenger_pickup_point."  AND 	node_id=".$first_passenger_pickup_node;
-						$pickup_point_to_node_time_distance_array=$this->general->get_all_single_row_querystring($pickup_point_to_node_time_distance_query);
-						$pickup_point_to_node_time_distance=$pickup_point_to_node_time_distance_array->time_to_node;  // pickup point to node time_distance for 1st passenger
-						$first_passenger_first_node_arrival_time=strtotime($first_passenger_pickup_time)+($pickup_point_to_node_time_distance*60);
-						//echo "Node ID=".$first_passenger_pickup_node." Arrival Time=".date('h:i:s',$first_passenger_first_node_arrival_time)." for 1st passenger";
-						
-						$all_node_arrival_time_array= $this->booking_model->get_all_node_arrival_time_of_a_route($route_id,$first_passenger_pickup_node,date('H:i:s',$first_passenger_first_node_arrival_time));
-						//echo "Route id=".$route_id.",First node id=".$all_node_arrival_time_array;
-								
-						$arrival_node_array_key=$this->searchForId($drop_node, $all_node_arrival_time_array);
-						$pickup_node_array_key=$this->searchForId($pickup_node, $all_node_arrival_time_array);				
-						
-						
-						
-						// How may available seat? 
-						$schedules = $this->booking_model->get_schedule($booking_date, $all_node_arrival_time_array[$pickup_node_array_key]['node_arrival_time'], $all_node_arrival_time_array[$arrival_node_array_key]['node_arrival_time']);
-						
-						//echo "car id=".$schedules->car_id;
-						
-						$number_of_passenger_in_a_car=$this->booking_model->get_number_of_passenger_in_a_car($schedules->car_id, $booking_date);
-						$car_capacity=$this->booking_model->get_car_capacity($schedules->car_id);
-						
-						$per_km_cost=$this->config->item('per_km_cost');
-						$route_info= $this->general->get_all_table_info_by_id('car_route', 'route_id', $route_id);
-						$route_fixed_cost= $route_info->fixed_cost;
-						$passenger_cost_per_seat=round(($per_km_cost*$total_kilomiter)+($route_fixed_cost/($number_of_passenger_in_a_car+$no_of_set)),2);
-						$passenger_total_cost=$passenger_cost_per_seat*$no_of_set;
-						
-						if(($number_of_passenger_in_a_car+$no_of_set)<=$car_capacity )
-						{
-							$response["success"] = 1;
-							$response['booking_date'] = $booking_date;
-							$response['fare_cost'] = $passenger_total_cost;
-							$response['pickup_point'] = $this->booking_model->get_pickup_point_name_from_id($pickup_point);
-							$response['drop_point'] = $this->booking_model->get_pickup_point_name_from_id($drop_point);
-							$response['total_kilomiter'] = $total_kilomiter;
-							$response['total_passenger'] = $number_of_passenger_in_a_car+$no_of_set;
-							$response['per_km_cost'] = $per_km_cost;
-							$response['fixed_cost'] = $route_fixed_cost;
-							$response['pickup_time'] = $all_node_arrival_time_array[$pickup_node_array_key]['node_arrival_time'];
-							$response['drop_time'] = $all_node_arrival_time_array[$arrival_node_array_key]['node_arrival_time'];
-							echo json_encode($response);							
-						}
-						else
-						{
-							$response["success"] = 0;
-							$response["message"] = 'Sorry! there is only '.($car_capacity-$number_of_passenger_in_a_car).' seat available';
-							echo json_encode($response);
-						}
-					}
-					else
-					{
-						// definitly 1st customer
-						$schedules = $this->booking_model->get_schedule($booking_date, $estimated_pickup_time, $int_arrival_time);
-						$number_of_passenger_in_a_car=$this->booking_model->get_number_of_passenger_in_a_car($schedules->car_id, $booking_date);				
-						//print_r($schedules);
-						
-						$per_km_cost=$this->config->item('per_km_cost');
-						$route_info= $this->general->get_all_table_info_by_id('car_route', 'route_id', $route_id);
-						$route_fixed_cost= $route_info->fixed_cost;
-						//$passenger_cost=round(($per_km_cost*$total_kilomiter)+($route_fixed_cost/($number_of_passenger_in_a_car+$no_of_set)),2);				
-						
-						$passenger_cost_per_seat=round(($per_km_cost*$total_kilomiter)+($route_fixed_cost/($number_of_passenger_in_a_car+$no_of_set)),2);
-						$passenger_total_cost=$passenger_cost_per_seat*$no_of_set;
-						
-						$number_of_passenger_in_a_car=$this->booking_model->get_number_of_passenger_in_a_car($schedules->car_id,$this->input->post('booking_date', TRUE));
-						$car_capacity=$this->booking_model->get_car_capacity($schedules->car_id);
-						
-						if(($number_of_passenger_in_a_car+$no_of_set)<=$car_capacity )
-						{
-							$response["success"] = 1;
-							$response['booking_date'] = $booking_date;
-							$response['fare_cost'] = $passenger_total_cost;
-							$response['pickup_point'] = $this->booking_model->get_pickup_point_name_from_id($pickup_point);
-							$response['drop_point'] = $this->booking_model->get_pickup_point_name_from_id($drop_point);
-							$response['total_kilomiter'] = $total_kilomiter;
-							$response['total_passenger'] = $number_of_passenger_in_a_car+$no_of_set;
-							$response['per_km_cost'] = $per_km_cost;
-							$response['fixed_cost'] = $route_fixed_cost;
-							$response['pickup_time'] = $estimated_pickup_time;
-							$response['drop_time'] = $int_arrival_time;
-							echo json_encode($response);
-						}
-						else
-						{
-							$response["success"] = 0;
-							$response["message"] = 'Sorry! there is only '.($car_capacity-$number_of_passenger_in_a_car).' seat available';
-							echo json_encode($response);
-							//echo '<div class="alert alert-error"></div>';	
-						}						
-					}					
-				}
-				else
-				{
-					$response["success"] = 0;
-					$response["message"] = "Sorry! Our vehical is not available in this time";
-					echo json_encode($response);	
-				}
+				$user_id = base64_decode($this->input->post('user_id', TRUE));
+				echo "User ID ".$user_id;				
 			}
 			else
 			{

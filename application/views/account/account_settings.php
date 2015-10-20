@@ -45,11 +45,27 @@
     </div>
 </div>
 
+<div class="control-group <?php echo (form_error('mobile')) ? 'error' : ''; ?>">
+      <label class="control-label" for="mobile">Mobile</label>
+
+      <div class="controls">
+        <?php echo form_input(array('name' => 'mobile', 'placeholder'=>'01XXXXXXXXX', 'id' => 'mobile', 'value' => set_value('mobile') ? set_value('mobile') : (isset($account->phone) ? $account->phone : ''))); ?>
+
+        <?php if (form_error('mobile')) : ?>
+          <span class="help-inline">
+          <?php
+            echo form_error('mobile');
+          ?>
+          </span>
+        <?php endif; ?>
+      </div>
+  </div>
+
 <div class="control-group <?php echo (form_error('settings_fullname')) ? 'error' : ''; ?>">
     <label class="control-label" for="settings_fullname"><?php echo lang('settings_fullname'); ?></label>
 
     <div class="controls">
-		<?php echo form_input(array('name' => 'settings_fullname', 'id' => 'settings_fullname', 'value' => set_value('settings_fullname') ? set_value('settings_fullname') : (isset($account_details->fullname) ? $account_details->fullname : ''), 'maxlength' => 160)); ?>
+		<?php echo form_input(array('name' => 'settings_fullname', 'readonly'=>'readonly', 'id' => 'settings_fullname', 'value' => (isset($account_details->fullname) ? $account_details->fullname : ''), 'maxlength' => 160)); ?>
 		<?php if (form_error('settings_fullname'))
 	{
 		?>
@@ -66,11 +82,11 @@
     <div class="controls">
 		<?php echo form_input(array('name' => 'settings_firstname', 'id' => 'settings_firstname', 'value' => set_value('settings_firstname') ? set_value('settings_firstname') : (isset($account_details->firstname) ? $account_details->firstname : ''), 'maxlength' => 80)); ?>
 		<?php if (form_error('settings_firstname'))
-	{
+	    {
 		?>
         <span class="help-inline">
-					<?php echo form_error('settings_firstname'); ?>
-					</span>
+			<?php echo form_error('settings_firstname'); ?>
+			</span>
 		<?php } ?>
     </div>
 </div>
@@ -97,18 +113,18 @@
 		<?php $m = $this->input->post('settings_dob_month') ? $this->input->post('settings_dob_month') : (isset($account_details->dob_month) ? $account_details->dob_month : ''); ?>
         <select name="settings_dob_month" class="input-small">
             <option value=""><?php echo lang('dateofbirth_month'); ?></option>
-            <option value="1"<?php if ($m == 1) echo ' selected="selected"'; ?>><?php echo lang('month_jan'); ?></option>
-            <option value="2"<?php if ($m == 2) echo ' selected="selected"'; ?>><?php echo lang('month_feb'); ?></option>
-            <option value="3"<?php if ($m == 3) echo ' selected="selected"'; ?>><?php echo lang('month_mar'); ?></option>
-            <option value="4"<?php if ($m == 4) echo ' selected="selected"'; ?>><?php echo lang('month_apr'); ?></option>
-            <option value="5"<?php if ($m == 5) echo ' selected="selected"'; ?>><?php echo lang('month_may'); ?></option>
-            <option value="6"<?php if ($m == 6) echo ' selected="selected"'; ?>><?php echo lang('month_jun'); ?></option>
-            <option value="7"<?php if ($m == 7) echo ' selected="selected"'; ?>><?php echo lang('month_jul'); ?></option>
-            <option value="8"<?php if ($m == 8) echo ' selected="selected"'; ?>><?php echo lang('month_aug'); ?></option>
-            <option value="9"<?php if ($m == 9) echo ' selected="selected"'; ?>><?php echo lang('month_sep'); ?></option>
-            <option value="10"<?php if ($m == 10) echo ' selected="selected"'; ?>><?php echo lang('month_oct'); ?></option>
-            <option value="11"<?php if ($m == 11) echo ' selected="selected"'; ?>><?php echo lang('month_nov'); ?></option>
-            <option value="12"<?php if ($m == 12) echo ' selected="selected"'; ?>><?php echo lang('month_dec'); ?></option>
+                <option value="1"<?php if ($m == 1) echo ' selected="selected"'; ?>><?php echo lang('month_jan'); ?></option>
+                <option value="2"<?php if ($m == 2) echo ' selected="selected"'; ?>><?php echo lang('month_feb'); ?></option>
+                <option value="3"<?php if ($m == 3) echo ' selected="selected"'; ?>><?php echo lang('month_mar'); ?></option>
+                <option value="4"<?php if ($m == 4) echo ' selected="selected"'; ?>><?php echo lang('month_apr'); ?></option>
+                <option value="5"<?php if ($m == 5) echo ' selected="selected"'; ?>><?php echo lang('month_may'); ?></option>
+                <option value="6"<?php if ($m == 6) echo ' selected="selected"'; ?>><?php echo lang('month_jun'); ?></option>
+                <option value="7"<?php if ($m == 7) echo ' selected="selected"'; ?>><?php echo lang('month_jul'); ?></option>
+                <option value="8"<?php if ($m == 8) echo ' selected="selected"'; ?>><?php echo lang('month_aug'); ?></option>
+                <option value="9"<?php if ($m == 9) echo ' selected="selected"'; ?>><?php echo lang('month_sep'); ?></option>
+                <option value="10"<?php if ($m == 10) echo ' selected="selected"'; ?>><?php echo lang('month_oct'); ?></option>
+                <option value="11"<?php if ($m == 11) echo ' selected="selected"'; ?>><?php echo lang('month_nov'); ?></option>
+                <option value="12"<?php if ($m == 12) echo ' selected="selected"'; ?>><?php echo lang('month_dec'); ?></option>
         </select>
 		<?php $d = $this->input->post('settings_dob_day') ? $this->input->post('settings_dob_day') : (isset($account_details->dob_day) ? $account_details->dob_day : ''); ?>
         <select name="settings_dob_day" class="input-small">

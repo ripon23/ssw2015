@@ -56,19 +56,39 @@
           </div>
       </div>
 
-      <div class="control-group <?php echo (form_error('users_fullname')) ? 'error' : ''; ?>">
-        <label class="control-label" for="users_fullname"><?php echo lang('settings_fullname'); ?></label>
+      <div class="control-group <?php echo (form_error('mobile')) ? 'error' : ''; ?>">
+          <label class="control-label" for="mobile">Mobile</label>
 
-        <div class="controls">
-          <?php echo form_input(array('name' => 'users_fullname', 'id' => 'users_fullname', 'value' => set_value('users_fullname') ? set_value('users_fullname') : (isset($update_account_details->fullname) ? $update_account_details->fullname : ''), 'maxlength' => 160)); ?>
+          <div class="controls">
+            <?php echo form_input(array('name' => 'mobile', 'placeholder'=>'01XXXXXXXXX', 'id' => 'mobile', 'value' => set_value('mobile') ? set_value('mobile') : (isset($update_account->phone) ? $update_account->phone : ''))); ?>
 
-          <?php if (form_error('users_fullname')) : ?>
-            <span class="help-inline">
-              <?php echo form_error('users_fullname'); ?>
-            </span>
-          <?php endif; ?>
-        </div>
+            <?php if (form_error('mobile')) : ?>
+              <span class="help-inline">
+              <?php
+                echo form_error('mobile');
+              ?>
+              </span>
+            <?php endif; ?>
+          </div>
       </div>
+      <?php if ($action=='update') :?>
+        <div class="control-group <?php echo (form_error('users_fullname')) ? 'error' : ''; ?>">
+          <label class="control-label" for="users_fullname"><?php echo lang('settings_fullname'); ?></label>
+
+          <div class="controls">
+            <?php echo form_input(array('name' => 'users_fullname', 'readonly'=>'readonly', 'id' => 'users_fullname', 'value' => set_value('users_fullname') ? set_value('users_fullname') : (isset($update_account_details->fullname) ? $update_account_details->fullname : ''), 'maxlength' => 160)); ?>
+
+            <?php if (form_error('users_fullname')) : ?>
+              <span class="help-inline">
+                <?php echo form_error('users_fullname'); ?>
+              </span>
+            <?php endif; ?>
+          </div>
+        </div>
+      <?php 
+      endif;
+      ?>
+      
 
       <div class="control-group <?php echo (form_error('users_firstname')) ? 'error' : ''; ?>">
           <label class="control-label" for="users_firstname"><?php echo lang('settings_firstname'); ?></label>

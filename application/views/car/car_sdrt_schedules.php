@@ -113,7 +113,8 @@ $(window).on('load', function () {
                         <th>Schedule Date</th>
                         <th>Route</th>
                         <th>Car</th>                        
-                        <th>No. Of Set</th>
+                        <th>No. of Seat</th>
+                        <th>Booked Seat</th>
                         <th>Per seat fare</th>
                         <th>Start Time</th>
                         <th>End Time</th>
@@ -150,6 +151,14 @@ $(window).on('load', function () {
                             echo $car_results->no_of_set;
                         ?>
                         </td>
+                        
+                        <td align="center">
+                        <?php 
+                            $available_seat=$this->booking_model->get_available_seat_in_a_car($schedule->schedule_id,$schedule->car_id);
+							echo (($car_results->no_of_set)-$available_seat);
+                        ?>
+                        </td>
+                        
                         <td align="center">
                         <?php 
                             echo $schedule->per_seat_fare." TK";

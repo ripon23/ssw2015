@@ -8,9 +8,52 @@ class Account_model extends CI_Model {
 	 * @access public
 	 * @return object all accounts
 	 */
-	function get()
+	function get($name=NULL, $whereClause=NULL, $start=NULL, $limit=NULL)
+	{		
+		$this->db->select('a3m_account.id, a3m_account.username, a3m_account.email,  a3m_account_details.fullname, a3m_acl_role.name');
+		$this->db->from('a3m_account');
+		$this->db->join('a3m_account_details', 'a3m_account_details.account_id = a3m_account.id');
+		$this->db->join('a3m_rel_account_role', 'a3m_rel_account_role.account_id = a3m_account.id');
+		$this->db->join('a3m_acl_role', 'a3m_acl_role.id = a3m_rel_account_role.role_id');
+		
+		if ($name!==NULL):
+		$this->db->like('fullname',$name);
+		endif;
+		if (is_array($whereClause) && !empty($whereClause)):
+		$this->db->where($whereClause);
+		endif;
+		$this->db->order_by("id", "ASC");		 		
+		if($limit!=NULL):
+			$this->db->limit($limit, $start);
+		endif;		
+		return $this->db->get()->result();
+	}
+	
+	function no_of_users($name=NULL, $whereClause=NULL){
+		$this->db->select('count(a3m_account.id) AS no_of_users');
+		$this->db->from('a3m_account');	
+		$this->db->join('a3m_account_details', 'a3m_account_details.account_id = a3m_account.id');
+		$this->db->join('a3m_rel_account_role', 'a3m_rel_account_role.account_id = a3m_account.id');
+		$this->db->join('a3m_acl_role', 'a3m_acl_role.id = a3m_rel_account_role.role_id');
+		if ($name!==NULL):
+		$this->db->like('a3m_account_details.fullname',$name);
+		endif;
+		if ($whereClause!==NULL):
+		$this->db->where($whereClause);
+		endif;
+		$result = $this->db->get()->result_array();
+		
+		return $result[0]['no_of_users'];
+		
+	}
+
+	function record_count_main()
 	{
-		return $this->db->get('a3m_account')->result();
+		$this->db->select('count(id) as no_of_donor');		
+		$this->db->where_not_in('type',4);
+		$this->db->where_not_in('type',5);
+	  	$query = $this->db->get('a3m_account')->result();
+	  	return $query['0']->no_of_donor; 
 	}
 
 	/**
@@ -96,9 +139,9 @@ class Account_model extends CI_Model {
 		// Create password hash using phpass
 		if ($password !== NULL)
 		{
-			$this->load->helper('account/phpass');
-			$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
-			$hashed_password = $hasher->HashPassword($password);
+		$this->load->helper('account/phpass');
+		$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
+		$hashed_password = $hasher->HashPassword($password);
 		}
 
 		$this->load->helper('date');
@@ -154,6 +197,19 @@ class Account_model extends CI_Model {
 		$new_hashed_password = $hasher->HashPassword($password_new);
 
 		$this->db->update('a3m_account', array('password' => $new_hashed_password), array('id' => $account_id));
+	}
+
+	/**
+	 * Change account mobile
+	 *
+	 * @access public
+	 * @param int $account_id
+	 * @param int $new_email
+	 * @return void
+	 */
+	function update_phone($account_id, $phone)
+	{
+		$this->db->update('a3m_account', array('phone' => $phone), array('id' => $account_id));
 	}
 
 	// --------------------------------------------------------------------

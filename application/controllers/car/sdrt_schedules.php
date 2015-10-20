@@ -114,7 +114,7 @@ class Sdrt_schedules extends CI_Controller {
 		$route_id=$this->input->post("route_id");
 		if($route_id)
 		{
-		$query="SELECT * FROM car_sdrt_schedule WHERE route_id=".$route_id." AND schedule_date>='".date('Y-m-d')."'";
+		$query="SELECT * FROM car_sdrt_schedule WHERE route_id=".$route_id." AND schedule_date>='".date('Y-m-d')."' AND concat(schedule_date,' ',start_time)>'".date('Y-m-d H:i:s')."' ORDER BY schedule_date ASC";
 		$data['schedule_array']=$this->general_model->get_all_querystring_result($query);
 		$data['all_pickup_point']=$this->booking_model->get_all_pickup_point_in_a_route($route_id);
 		echo $this->load->view('car/ajax_view_sdrt_schedule', $data, TRUE);

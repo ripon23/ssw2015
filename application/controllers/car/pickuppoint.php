@@ -136,7 +136,7 @@ class Pickuppoint extends CI_Controller {
 
 	    $data['action'] = 'create';
 	    $node_select = '`node_id`, `node_name_en`';	
-	    $data['all_car_node'] = $this->general->get_list_view('car_node', $node_field = NULL, NULL, $node_select, 'node_id', 'desc', NULL, NULL);
+	    // $data['all_car_node'] = $this->general->get_list_view('car_node', $node_field = NULL, NULL, $node_select, 'node_id', 'desc', NULL, NULL);
 		
 	    $this->form_validation->set_error_delimiters('<div class="field_error">', '</div>');
 	    $this->form_validation->set_rules(
@@ -219,7 +219,10 @@ class Pickuppoint extends CI_Controller {
 	    {
 	      $data['update_details'] = $this->general->get_all_table_info_by_id('car_pickup_point', 'pickup_point_id', $id);
 	      $data['action'] = 'update';
-	    }	
+	    }
+	    $select_route = ' `route_id`, `route_name_en`';
+	    $data['all_routes'] = $this->general->get_list_view('car_route', $field_name=NULL, $id=NULL, $select_route, 'route_id', 'desc', NULL, NULL);
+		$data['all_nodes'] = $this->general->get_list_search_view('car_node', NULL, NULL);	
 	    $this->load->view('car/pickup_point_save', $data);
   	}
 

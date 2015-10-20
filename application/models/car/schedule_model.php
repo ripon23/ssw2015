@@ -14,6 +14,17 @@ class Schedule_model extends CI_Model {
 		
 		return $query->result();
 	}
+	
+	public function get_drt_driver_schedule($account_id, $schedule_date)
+	 {
+	  $this->db->from('car_schedule');
+	  $this->db->join('car_info', 'car_schedule.car_id=car_info.car_id');
+	  $this->db->where('car_info.driver_id', $account_id);
+	  $this->db->where('car_schedule.schedule_date', $schedule_date);
+	  $query = $this->db->get();
+	  return $query->result();
+	 }
+	
 }
 
 
