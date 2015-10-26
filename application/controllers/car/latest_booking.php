@@ -108,6 +108,7 @@ class Latest_booking extends CI_Controller {
 			$current_booking['schedule_id'] = $latest_book->schedule_id;
 			$current_booking['pickup_time'] = $latest_book->pickup_time;
 			$current_booking['arrival_time'] = $latest_book->arrival_time;
+			$current_booking['car_id'] = $latest_book->car_id;
 			//$current_booking['schedule_details'] = $this->general->get_all_table_info_by_id_custom('car_schedule', $schedule_select, 'schedule_id', $latest_book->schedule_id);
 			$current_booking['route_details'] = $this->general->get_all_table_info_by_id_custom('car_route', $route_select, 'route_id', $latest_book->route_id);
 			$current_booking['date_of_booking'] = $latest_book->date_of_booking;

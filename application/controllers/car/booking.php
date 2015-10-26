@@ -338,7 +338,7 @@ class Booking extends CI_Controller {
 			}
 			else
 			{			
-			echo '<div class="alert alert-error">Sorry! Our vehical is not available in this time </div>';	
+			echo '<div class="alert alert-error">Sorry! Our vehicle is not available in this time </div>';	
 			}
 	}
 	

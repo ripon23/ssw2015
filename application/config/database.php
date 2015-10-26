@@ -46,12 +46,19 @@ $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'ssw2015';
 
+// Live Server 
+/*$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'gramweb_gramcar';
+$db['default']['password'] = 'gr@mCar@2015';
+$db['default']['database'] = 'gramweb_gramcar2015';*/
 
+// old
 /*$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'aamra24_ssw';
 $db['default']['password'] = 'ssw@2014';
 $db['default']['database'] = 'aamra24_ssw2014';*/
 
+// old
 /*$db['default']['hostname'] = 'ssw2014.db.4572704.hostedresource.com';
 $db['default']['username'] = 'ssw2014';
 $db['default']['password'] = 'GramCar@2014';

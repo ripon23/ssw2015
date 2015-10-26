@@ -23,7 +23,6 @@
         });
     </script>
 <script>
-<script>
 $(document).ready(function(){
 	$(".delete").click(function(e){
 		e.preventDefault(); 
@@ -115,6 +114,7 @@ $(window).on('load', function () {
 			<tr>
                 <th>B. ID<?php //echo lang('booking_id')?></th>
                 <th>Passenger</th>
+                <th>Car</th>
                 <th>Date for booking</th>
                 <th><?=lang('route_name')?></th>
                  
@@ -144,6 +144,13 @@ $(window).on('load', function () {
             <tr id="row_<?=$i?>">
 				<th><?php echo $latest_book['booking_id']; ?></th>
                 <td><?php echo $latest_book['username']; ?></td>
+                <td>
+				<?php 
+				$car_results = $this->general->get_all_table_info_by_id_custom("car_info", "licence_no, no_of_set", 'car_id', $latest_book['car_id']);
+                echo $car_results->licence_no;				
+				?>
+                
+                </td>
                 <td style="font-family:Verdana, Geneva, sans-serif; font-size:12px;"><?php echo date("d F, Y", strtotime($latest_book['date_of_booking']));  ?>
                 </td>
                 <td>

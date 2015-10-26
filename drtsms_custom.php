@@ -1,10 +1,10 @@
 <?php
-$con = mysql_connect("ssw2014.db.4572704.hostedresource.com","ssw2014","GramCar@2014");
+$con = mysql_connect("localhost","gramweb_gramcar","gr@mCar@2015");
 if (!$con)
   {
   die('Could not connect: ' . mysql_error());
   }
-mysql_select_db("ssw2014", $con);
+mysql_select_db("gramweb_gramcar2015", $con);
 
 
 /*$con = mysql_connect("localhost","root","");
@@ -14,18 +14,20 @@ if (!$con)
   }
 mysql_select_db("ssw2015", $con);*/
 
-	$todayDate = strtotime(date('Y-m-d'));// current date
+
+	$todayDate = strtotime(date('Y-m-d')); // current date
 	$currentTime = time($todayDate); //Change date into time 
-	$timeAfterSixHour = $todayDate+60*60*13;	//server
-	//$timeAfterSixHour = $todayDate;   			// Local
+	//$timeAfterSixHour = $todayDate+60*60*13;	//server old
+	$timeAfterSixHour = $todayDate;   			// Local
 	$entrydate=date("Y-m-d",$timeAfterSixHour);
 		
 	
 	$currentDate = strtotime(date('H:i:s'));
-	$futureDate1 = $currentDate+(60*60*13);	//server
-	$futureDate2 = $currentDate+(60*60*15);	//server
-	//$futureDate1 = $currentDate;				// Local
-	//$futureDate2 = $currentDate+(60*60*2);		// Local
+	//$futureDate1 = $currentDate+(60*60*13);	//server old
+	//$futureDate2 = $currentDate+(60*60*14);	//server old
+	
+	$futureDate1 = $currentDate;				// Local
+	$futureDate2 = $currentDate+(60*60*1);		// Local
 	
 	$formatDate1 = date("H:i:s", $futureDate1);
 	$formatDate2 = date("H:i:s", $futureDate2);

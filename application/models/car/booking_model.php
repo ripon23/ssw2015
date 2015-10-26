@@ -254,6 +254,23 @@ class Booking_model extends CI_Model {
   //if($query->num_rows()>0):
   return $query->result();
  }
+ 
+ 
+ public function get_driver_wise_booking($driver_id)
+ {
+  $this->db->select('car_booking.booking_id, car_booking.user_id, a3m_account_details.fullname, a3m_account.username, car_availed_actual_time.booking_id as attendance');
+  $this->db->from('car_booking');
+  $this->db->join('car_info', 'car_booking.car_id=car_info.car_id');
+  $this->db->join('a3m_account_details', 'car_booking.user_id = a3m_account_details.account_id');
+  $this->db->join('a3m_account', 'car_booking.user_id = a3m_account.id');
+  $this->db->join('car_availed_actual_time', 'car_booking.booking_id = car_availed_actual_time.booking_id', 'left');
+  $this->db->where('car_info.driver_id', $driver_id);
+  $this->db->where('car_booking.date_of_booking', date('Y-m-d', now()));
+  $this->db->where_in('status',3);
+  $query = $this->db->get();
+  return $query->result();
+ }
+ 
   
 }
 

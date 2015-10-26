@@ -47,6 +47,7 @@ class Attendance extends CI_Controller {
 				$response['account'] = $this->account_model->get_by_id($driver_id);
 				$response['today_bookings'] = $this->booking_model->get_driver_wise_booking($driver_id);
 				$response["success"] = 1;
+				
 				echo json_encode($response);
 			}
 			else
@@ -100,7 +101,7 @@ class Attendance extends CI_Controller {
 
 		    	// Pickup time and drop time
 		    	$time = date('h:i:s', now());   	
-				$response['account'] = $this->account_model->get_by_id($driver_id);
+				// $response['account'] = $this->account_model->get_by_id($driver_id);
 				$customer = $this->account_model->get_by_id($customer_id);
 				$response["success"] = 1;
 				
@@ -110,7 +111,8 @@ class Attendance extends CI_Controller {
 					);
 					$this->general->update_table('car_availed_actual_time', $attendance_array, 'booking_id', $booking_id);
 					$this->general->update_table('car_booking', array('status' => 1), 'booking_id', $booking_id);
-					$response["message"] = $customer->username." has been successfully availed";
+					$response["message"] = 'Attendance of '.$customer->username." has been completed";
+					//$response['today_bookings'] = $this->booking_model->get_driver_wise_booking($driver_id);
 				}
 				else
 				{
@@ -120,10 +122,12 @@ class Attendance extends CI_Controller {
 						'pickup_time' => $time,
 						'driver_id' => $driver_id
 					);
-					$this->general->save_into_table('car_availed_actual_time', $attendance_array);	
+					$response["message"] = 'Pickup time of '.$customer->username." has been successfully saved";
+					$this->general->save_into_table('car_availed_actual_time', $attendance_array);
+					// $response['today_bookings'] = $this->booking_model->get_driver_wise_booking($driver_id);
+					
 				}
-				$response['today_bookings'] = $this->booking_model->get_driver_wise_booking($driver_id);
-				echo json_encode($response);
+				echo json_encode($response);					
 			}
 			else
 			{

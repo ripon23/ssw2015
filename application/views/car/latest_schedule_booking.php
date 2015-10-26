@@ -62,6 +62,7 @@ $(window).on('load', function () {
 			<tr>
                 <th>B.ID</th>
                 <th>Reference ID</th>
+                <th>User</th>
                 <th><?=lang('route_name')?></th>
                 <th>Date for booking</th> 
                 <th>Start - Arrival</th> 
@@ -90,6 +91,9 @@ $(window).on('load', function () {
             <tr id="row_<?=$i?>">
                 <td><?php echo $latest_book->sbooking_id; ?></td>
                 <td><?php echo $latest_book->reference_id; ?></td>
+                <td><?php 
+				$user_details_info=$this->account_model->get_by_id($latest_book->user_id);
+				echo "<a href='account/manage_users/save/".$latest_book->user_id."'>".$user_details_info->username."</a>"; ?></td>
                 <td>
 				<?php //echo ($language=='bangla')? ($latest_book['route_details']->route_name_bn==NULL || $latest_book['route_details']->route_name_bn=='')?$latest_book['route_details']->route_name_en:$latest_book['route_details']->route_name_bn : $latest_book['route_details']->route_name_en
 				echo $this->booking_model->get_route_name_from_id($latest_book->route_id);

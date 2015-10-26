@@ -214,7 +214,7 @@ class Booking extends CI_Controller {
 						{
 							$response["success"] = 0;
 							$response["message"] = 'Sorry! there is only '.($car_capacity-$number_of_passenger_in_a_car).' seat available';
-							echo json_encode($response);
+							// echo json_encode($response);
 							//echo '<div class="alert alert-error"></div>';	
 						}						
 					}					
@@ -222,7 +222,7 @@ class Booking extends CI_Controller {
 				else
 				{
 					$response["success"] = 0;
-					$response["message"] = "Sorry! Our vehical is not available in this time";
+					$response["message"] = "Sorry! Our vehicle is not available in this time";
 					echo json_encode($response);	
 				}
 			}
@@ -285,7 +285,7 @@ class Booking extends CI_Controller {
 			// Run form validation
 		    if ($this->form_validation->run())
 		    {
-		    	$data['account'] = $this->account_model->get_by_id(base64_decode($this->input->post('user_id', TRUE)));		
+		    	// $data['account'] = $this->account_model->get_by_id(base64_decode($this->input->post('user_id', TRUE)));		
 				
 				$pickup_node = base64_decode($this->input->post('node_id', TRUE));
 				$pickup_point = base64_decode($this->input->post('pick_up', TRUE));
@@ -297,8 +297,6 @@ class Booking extends CI_Controller {
 				$accepted_time_delay = base64_decode($this->input->post('time_delay', TRUE));
 				$arrival_time = base64_decode($this->input->post('int_araival_itme', TRUE));
 				$no_of_set = base64_decode($this->input->post('no_of_set', TRUE));
-
-
 					
 				$fare_cost = base64_decode($this->input->post('fare_cost', TRUE));	
 				
@@ -319,8 +317,8 @@ class Booking extends CI_Controller {
 					'start_pickup_point' => $pickup_point,
 					'end_node' => $drop_node,
 					'end_pickup_point' => $drop_point,
-					'pickup_time' => date('H:i:s',$estimated_pickup_time),
-					'arrival_time' => date('H:i:s',$int_arrival_time),
+					'pickup_time' => $estimated_pickup_time,
+					'arrival_time' => $int_arrival_time,
 					'distance_in_km' => $total_kilomiter,
 					'accepted_time_delay' => $accepted_time_delay,
 					'create_user_id' => $data['account']->username,
