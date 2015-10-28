@@ -11,9 +11,7 @@
         <div class="span4 offset4">
 
 			<?php echo form_open(uri_string().($this->input->get('continue') ? '/?continue='.urlencode($this->input->get('continue')) : ''), 'class="form-horizontal"'); ?>
-			<?php echo form_fieldset(); ?>
-
-            
+			<?php echo form_fieldset(); ?>            
 
             <div class="well">
             	<legend><?php echo lang('sign_in_heading'); ?></legend>
@@ -25,7 +23,7 @@
                     <label class="control-label" for="sign_in_username_email"><?php echo lang('sign_in_username_email'); ?></label>
 
                     <div class="controls">
-						<?php echo form_input(array('name' => 'sign_in_username_email', 'id' => 'sign_in_username_email', 'value' => set_value('sign_in_username_email'), 'maxlength' => '24')); ?>
+						<?php echo form_input(array('name' => 'sign_in_username_email', 'autofocus'=>'autofocus', 'id' => 'sign_in_username_email', 'value' => set_value('sign_in_username_email'), 'maxlength' => '24')); ?>
 						<?php if (form_error('sign_in_username_email') || isset($sign_in_username_email_error)) :?>
 	                    	<span class="help-inline">
 		        			<?php echo form_error('sign_in_username_email'); ?>
@@ -64,9 +62,13 @@
                     </div>
                 </div>
 
-                <div>
-					<?php echo form_button(array('type' => 'submit', 'class' => 'btn pull-right', 'content' => '<i class="icon-lock"></i> '.lang('sign_in_sign_in'))); ?>
+                <div class="control-group">
+                    <div class="controls">
+					<?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-info btn-small', 'content' => '<i class="icon-lock"></i> '.lang('sign_in_sign_in'))); ?>
+                	</div>
                 </div>
+
+                
 
                 <p><?php echo anchor('account/forgot_password', lang('sign_in_forgot_your_password')); ?><br/>
 					<?php echo sprintf(lang('sign_in_dont_have_account'), anchor('account/sign_up', lang('sign_in_sign_up_now'))); ?></p>

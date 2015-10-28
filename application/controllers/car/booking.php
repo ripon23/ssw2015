@@ -726,7 +726,7 @@ class Booking extends CI_Controller {
 			}    
 		}
 		
-		$select = "route_id, route_name_en";
+		$select = "route_id, route_name_en, route_name_bn";
 		$data['all_routes'] = $this->general->get_list_view('car_route', 'enable', 1, $select, 'route_id', 'desc', NULL, NULL);
 		
 		$this->load->view('car/booking_form', isset($data) ? $data : NULL);		
@@ -754,7 +754,7 @@ class Booking extends CI_Controller {
 		$data['account'] = $this->account_model->get_by_id($this->session->userdata('account_id'));		
 		$data['title'] = 'Schedule Booking';
 		
-		$select = "route_id, route_name_en";
+		$select = "route_id, route_name_en, route_name_bn";
 		$data['all_routes'] = $this->general->get_list_view('car_route', 'enable', 1, $select, 'route_id', 'desc', NULL, NULL);	
 		$this->load->view('car/schedule_booking_form', isset($data) ? $data : NULL);
 		

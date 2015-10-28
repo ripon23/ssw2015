@@ -55,7 +55,28 @@ class Sign_up extends CI_Controller {
 
 		// Setup form validation
 		$this->form_validation->set_error_delimiters('<span class="field_error">', '</span>');
-		$this->form_validation->set_rules(array(array('field' => 'sign_up_username', 'label' => 'lang:sign_up_username', 'rules' => 'trim|required|alpha_dash|min_length[2]|max_length[24]'), array('field' => 'sign_up_password', 'label' => 'lang:sign_up_password', 'rules' => 'trim|required|min_length[6]'), array('field' => 'sign_up_email', 'label' => 'lang:sign_up_email', 'rules' => 'trim|required|valid_email|max_length[160]'),array('field' => 'sign_up_phone', 'label' => 'lang:sign_up_phone', 'rules' => 'trim|required|min_length[11]|max_length[11]')));
+		$this->form_validation->set_rules(array(
+			array(
+				'field' => 'sign_up_username', 
+				'label' => 'lang:sign_up_username', 
+				'rules' => 'trim|required|alpha_dash|min_length[5]|max_length[24]'), 
+			array(
+				'field' => 'sign_up_password', 
+				'label' => 'lang:sign_up_password', 
+				'rules' => 'trim|required|min_length[6]|matches[passconf]'),
+			array(
+				'field' => 'passconf', 
+				'label' => 'Confirm Password', 
+				'rules' => 'trim|required|min_length[6]'),
+			array(
+				'field' => 'sign_up_email', 
+				'label' => 'lang:sign_up_email', 
+				'rules' => 'trim|required|valid_email|max_length[160]'),
+			array('field' => 'sign_up_phone', 
+				'label' => 'lang:sign_up_phone', 
+				'rules' => 'trim|required|min_length[11]|max_length[11]')
+			)
+		);
 
 		// Run form validation
 		if (($this->form_validation->run() === TRUE) && ($this->config->item("sign_up_enabled")))
@@ -97,8 +118,7 @@ class Sign_up extends CI_Controller {
 					$this->email->initialize($config);
 
 					// Generate reset password url
-					$password = $this->input->post('sign_up_password', TRUE);
-					
+					$password = $this->input->post('sign_up_password', TRUE);				
 					
 					$email_array = array(
 						'username' => $this->input->post('sign_up_username', TRUE),
@@ -130,6 +150,8 @@ class Sign_up extends CI_Controller {
 					// Run sign in routine
 					$this->authentication->sign_in($user_id);
 				}
+				
+				$this->session->set_flashdata('message_success', 'Thanks for creating an account on GramCar. We also sent an email regurding your login information');
 				redirect('account/sign_in');
 			}
 		}
@@ -165,6 +187,46 @@ class Sign_up extends CI_Controller {
 		return $this->account_model->get_by_email($email) ? TRUE : FALSE;
 	}
 
+	public function ajax_check_username()
+	{
+		$username = $this->input->post('username', TRUE);
+		if(isset($username))
+		{		    
+		    $username = filter_var($username, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH);
+		    if (strlen($username)<5) {
+		    	// echo "<span style='color:red;'>Username Not Available</span>";
+		    	die('<img title="The Username field must be at least 5 characters in length." src="resource/img/error.png" />');
+		    }
+		    else
+		    {
+		    	if($this->username_check(strtolower($username))){
+			    	// echo strtolower($username);
+			        die('<img title="This username is not available" src="resource/img/not.png" />');
+			    }else{
+			    	// echo "Available ".$username;
+			        die('<img title="This username is available" src="resource/img/ok.png" />');
+			    }
+		    }			    
+		}
+	}
+
+	public function ajax_check_email()
+	{
+		$email = $this->input->post('email', TRUE);
+		if(isset($email))
+		{
+			// Setup form validation
+			$email = filter_var($email, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH);
+			
+			if($this->email_check(strtolower($email))){
+		    	// echo strtolower($username);
+		        die('<img title="This email is already taken" src="resource/img/not.png" />');
+		    }else{
+		    	// echo "Available ".$username;
+		        die('<img title="This email is available" src="resource/img/ok.png" />');
+		    }
+		}
+	}
 }
 
 

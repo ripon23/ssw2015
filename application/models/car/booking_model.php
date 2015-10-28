@@ -271,6 +271,38 @@ class Booking_model extends CI_Model {
   return $query->result();
  }
  
+ 
+ public function get_all_node_of_a_route($route_id)
+ {
+	$all_node_of_a_route=array();
+	 
+	$query1="Select node_id, route_id, previous_node, node_name_en, node_name_bn  FROM  car_node WHERE  previous_node IS NULL AND route_id=".$route_id;
+	$resultSet = $this->db->query($query1);
+	$temp_previous_node2=$resultSet->row()->node_id;
+	
+	$temp_array=array('node_id'=>$temp_previous_node2,'node_name_en'=>$resultSet->row()->node_name_en,'node_name_bn'=>$resultSet->row()->node_name_bn );	
+	array_push($all_node_of_a_route, $temp_array);
+	
+	do{
+		$node_id=	$temp_previous_node2;
+		$query2="Select node_id, previous_node, node_name_en, node_name_bn from car_node Where previous_node=".$node_id;
+		$resultSet = $this->db->query($query2);
+		$temp_previous_node2=$resultSet->row()->node_id;				
+		
+		$temp_array=array('node_id'=>$resultSet->row()->node_id, 'node_name_en'=>$resultSet->row()->node_name_en,'node_name_bn'=>$resultSet->row()->node_name_bn );	
+		array_push($all_node_of_a_route, $temp_array);
+		
+			if(!$this->general->is_exist_in_a_table('car_node','previous_node',$temp_previous_node2))
+			{
+			$temp_previous_node2=false;
+			}
+			
+		}while($temp_previous_node2);
+	
+	 
+	return  $all_node_of_a_route;
+ }
+ 
   
 }
 

@@ -9,7 +9,7 @@ class Dashboard extends CI_Controller {
 		// Load the necessary stuff...
 		$this->load->helper(array('language', 'url', 'form', 'account/ssl'));
 		$this->load->library(array('account/authentication', 'account/authorization'));
-		$this->load->model(array('account/account_model','payment_model','registration_model','social_goods_model'));
+		$this->load->model(array('car/general','account/account_model','payment_model','registration_model','social_goods_model'));
 		//$this->load->language(array('mainmenu'));
 		
 		date_default_timezone_set('Asia/Dhaka');  // set the time zone UTC+6
@@ -38,7 +38,25 @@ class Dashboard extends CI_Controller {
 		{
 			$data['account'] = $this->account_model->get_by_id($this->session->userdata('account_id'));
 			
-			$this->load->view('dashboard', isset($data) ? $data : NULL);	
+			$highest_role=100;
+			//$all_user_role=$this->site_model->get_all_user_role($data['account']->id);
+			
+			$all_user_role=$this->general->get_all_table_info_by_id_asc_desc('a3m_rel_account_role', 'account_id', $data['account']->id, 'role_id', 'asc');
+			
+			
+			foreach ($all_user_role as $user_role) :
+				if($user_role->role_id<$highest_role)
+				$highest_role=$user_role->role_id;
+			endforeach; 
+		
+		if($highest_role==6)   // 6= customer
+		$this->load->view('dashboard_drt_customer', isset($data) ? $data : NULL); //Admin Dashboard		
+		else
+		$this->load->view('dashboard', isset($data) ? $data : NULL); //Admin Dashboard
+		
+			
+			//$this->load->view('dashboard', isset($data) ? $data : NULL);
+			//$this->load->view('dashboard_drt_customer', isset($data) ? $data : NULL);
 			
 		}
 		else

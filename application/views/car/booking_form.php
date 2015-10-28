@@ -276,7 +276,62 @@ $(window).on('load', function () {
                     <fieldset>
 
                     <!-- Form Name -->
-                    <legend>Checking for booking</legend>                    
+                    <legend>Checking for booking</legend>  
+                    
+                    <?php 
+						$language = $this->session->userdata('site_lang');
+						foreach ($all_routes as $key => $route) {
+						?>
+                        <?php 
+						$all_node=$this->booking_model->get_all_node_of_a_route($route->route_id);							
+						echo '<div style="overflow:hidden">';	
+						$route_name=$language=='bangla'? $route->route_name_bn:$route->route_name_en;
+						?>
+						
+                        <ul class="thumbnails" style="float:left;">
+							  <li class="span">
+								<div class="thumbnail">
+                                	<?php echo "<img src='".base_url().RES_DIR."/img/road_sign_16.png' width='32' height='32'>"; ?>
+								  	<p><?php echo "<span class='label label-warning'>".$route_name."</span> ";?></p>								  
+								</div>
+							  </li>
+							  <?php //echo "<i class='icon-arrow-right'></i> ";?>
+						</ul>
+						
+						
+						<?php
+						$i = 0;
+						$len = count($all_node);
+						
+						foreach ($all_node as $key => $value)
+						{	
+						$node_name=$language=='bangla'? $value['node_name_bn']:$value['node_name_en'];
+						//echo "<div class='media'>  <img src='".base_url().RES_DIR."/img/car_icon.png' width='32' height='32'> <br>".$node_name."</div>";
+						?> 
+						<ul class="thumbnails" style="float:left">
+							  <li class="span">
+								<div class="thumbnail">
+								  <?php echo "<img src='".base_url().RES_DIR."/img/car_icon.png' width='32' height='32'>"; ?>
+								  <p><?=$node_name?></p>
+								</div>
+							  </li>
+							  <?php //echo "<i class='icon-arrow-right'></i> ";?>
+						</ul>
+						<?php	
+						
+							//if ($i != $len - 1) {
+        					// not last
+							//echo "<i class='icon-arrow-right'></i> ";
+							//echo '<img src="'.base_url().RES_DIR.'/img/car_icon.png" width="32" height="32">';
+    						//}
+						$i++;
+						}
+						echo '</div>';
+						
+						?>
+                        
+                        <?php } ?>
+                                      
                     <!-- Select Basic -->
                     <div class="control-group">
                       <input type="hidden" id="base_url" value="<?php echo base_url(); ?>">

@@ -214,7 +214,7 @@ class Booking extends CI_Controller {
 						{
 							$response["success"] = 0;
 							$response["message"] = 'Sorry! there is only '.($car_capacity-$number_of_passenger_in_a_car).' seat available';
-							// echo json_encode($response);
+							echo json_encode($response);
 							//echo '<div class="alert alert-error"></div>';	
 						}						
 					}					
@@ -285,7 +285,7 @@ class Booking extends CI_Controller {
 			// Run form validation
 		    if ($this->form_validation->run())
 		    {
-		    	// $data['account'] = $this->account_model->get_by_id(base64_decode($this->input->post('user_id', TRUE)));		
+		    	$data['account'] = $this->account_model->get_by_id(base64_decode($this->input->post('user_id', TRUE)));		
 				
 				$pickup_node = base64_decode($this->input->post('node_id', TRUE));
 				$pickup_point = base64_decode($this->input->post('pick_up', TRUE));
